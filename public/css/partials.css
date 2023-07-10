@@ -1,0 +1,26 @@
+/*
+HEADER SECTION
+*/
+
+
+.Finsta-header a{
+    color:rgb(240, 105, 105);
+    text-decoration:underline;
+}
+
+
+.body{
+    background-color: red;
+
+}
+
+.button-container-header{
+
+    display:flex;
+
+}
+
+span{
+    font-style: italic;
+}
+

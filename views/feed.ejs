@@ -1,9 +1,15 @@
+
+<body>
 <%- include('partials/header') -%>
-  <div class="container">
-    <div class="row justify-content-center mt-5">
-      <ul class="row list-unstyled">
+<link rel="stylesheet" href = "css/feed.css"></link>
+  <div class="container" id = "testi">
+      <button class ="button_slide slide_down">Add Post</button>
+      <button class = "button_slide slide_down">Sign Out</button>
+    </div>
+    <div class="row justify-content-center mt-4" id = "all-images-container">
+      <ul class="row list-unstyled" id = "feed-image-width">
         <% for(var i=0; i<posts.length; i++) {%>
-          <li class="col-6 justify-content-between mt-5">
+          <li class="col-4 justify-content-between mt-2">
             <a href="/post/<%= posts[i]._id%>">
               <img class="img-fluid" src="<%= posts[i].image%>">
             </a>
@@ -11,5 +17,5 @@
         <% } %>
         </ul>
     </div>
-  </div>  
+</body>
 <%- include('partials/footer') -%>
