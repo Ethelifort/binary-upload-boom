@@ -52,6 +52,16 @@ body{
     -moz-transition: ease-out 0.4s;
     transition: ease-out 0.4s;
   }
+
+  .feed-button{
+    text-decoration: none;
+    box-shadow: inset 0 0 0 0 rgb(240, 105, 105);
+    color: #272323;
+  }
+
+  .feed-button:hover{
+    color:black
+  }
   
   .slide_down:hover {
     box-shadow: inset 0 100px 0 0 rgb(240, 105, 105);;
@@ -63,7 +73,11 @@ body{
     z-index: 1;
     margin-top: 160px;
     position: absolute;
-    
+ }
+
+ .heart>img{
+    text-shadow: 15px 15px rgb(32, 30, 30);
+
  }
 
  .images-feed{
@@ -76,5 +90,5 @@ body{
     margin-left: 38px;
     position: absolute;
     color:white;
-    text-shadow: 0.5px 0.5px rgb(32, 30, 30);
+    text-shadow: 1.5px 0.5px rgb(32, 30, 30);
 }
