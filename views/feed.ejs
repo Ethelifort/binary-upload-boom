@@ -2,12 +2,25 @@
 <body>
 <%- include('partials/header') -%>
 <link rel="stylesheet" href = "css/feed.css"></link>
-  <div class="container" id = "testi">
-    
+  <div class="container">
      <button class ="button_slide slide_down"><a href="/profile" class ="feed-button">Add Post</a></button>
      <button class ="button_slide slide_down"><a href="/logout" class ="feed-button ">Sign Out</a></button>
-        </div>
-    <div class="row justify-content-center mt-4" id = "all-images-container">
+</div>
+
+<div class="main-search-input-wrap">
+
+
+  <div class="wrap">
+    <div class="search">
+       <input type="text" class="searchTerm" placeholder="Who are you looking for?">
+      <form><button type="submit" class="searchButton"></form>
+         <i class="fa fa-search"></i>
+      </button>
+    </div>
+ </div>
+       
+    
+        <div class="row justify-content-center mt-4" id = "all-images-container">
       <ul class="row list-unstyled" id = "feed-image-width">
         <% for(var i=0; i<posts.length; i++) {%>
           <li class="col-4 justify-content-between mt-2">

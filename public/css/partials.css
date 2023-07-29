@@ -9,11 +9,6 @@ HEADER SECTION
 }
 
 
-.body{
-    background-color: red;
-
-}
-
 .button-container-header{
 
     display:flex;
