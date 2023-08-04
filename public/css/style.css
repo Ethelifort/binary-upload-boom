@@ -1,4 +1,3 @@
-
 /*
 LOGIN
 */
@@ -17,62 +16,85 @@ PROFILE
 
 
 #recent-posts{
-    width:100%;
-    overflow: scroll;
-    scroll-behavior: smooth;
-    border: 0.5px groove rgb(102, 96, 96);
-    height: 500px;
-    display: flex;
-    justify-content: center;
+  width:100%;
+  overflow: scroll;
+  scroll-behavior: smooth;
+  box-shadow: -2px 4px 5px 2px rgba(0, 0, 0, 0.5);
+  height: 600px;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20%;
 }
 
 #flex-container ul{
-   
-    margin-left:50%;
-    margin-top:60px;
+ 
+  margin-left:50%;
+  margin-top:10%;
 
 }
 
 h1{
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 body{
-    background-color: #f2f2f2;
-    font-family: 'Open Sans', sans-serif;
-  }
+  background-color: #f2f2f2;
+  font-family: 'Open Sans', sans-serif;
+  scroll-behavior: smooth;
 
-  .row {
-    display:flex;
-    justify-content: center;
-    margin-bottom: 50px;
-  }
+}
 
-  #recent-posts img{
-    width: 800px;
-    height: 200px;
-  }
+.row {
+  display:flex;
+  justify-content: center;
+  margin-bottom: 50px;
+}
 
-
-  .profile-login{
-    display: flex;
-    flex-direction: column;
-
-  }
-  .profile-login p{
-    display: flex;
-    justify-content: end;
-  }
-  
-
-  body > div.container > div.profile-login > a{
-
-    display: flex;
-    justify-content: end;
+#recent-posts img{
+  width: 800px;
+  height: 200px;
+}
 
 
-  }
+.profile-login{
+  display: flex;
+  flex-direction: column;
+  align-content: baseline;
+}
+
+
+body > div.container > div.profile-login > a{
+
+  display: flex;
+  justify-content: end;
+
+
+}
+
+.profile-login{
+  margin-left: 95%;
+  width: 25%;
+
+}
+
+.return-home{
+  width: 25%;
+}
+
+
+.roboto{
+  font-family: 'Roboto', sans-serif;
+  font-weight: 550;
+
+}
+
+
+.recent-posts-banner{
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+  font-size: 2.5em;  
+}
 
 
 

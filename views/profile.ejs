@@ -1,16 +1,17 @@
 <%- include('partials/header') -%>
 <link rel="stylesheet" href = "css/style.css"></link>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 <div class="container">
   <div class = "profile-login">
     <p><strong>User Name</strong>: <%= user.userName %></p>
     <p><strong>Email</strong>: <%= user.email %></p>
-    <a href="/logout" class="col-3 btn btn-primary">Logout</a>
+    <p><a href="/logout" class="col-3 btn btn-primary">Logout</a></p>
 </div>
 
   <div class="row mt-5">
       <div class="col-6">
           <div class="mt-5">
-            <h2>Add a post</h2>
+            <h2 class = "roboto">Add a post</h2>
             <form action="/post/createPost" enctype="multipart/form-data" method="POST">
               <div class="mb-3">
                   <label for="title" class="form-label">Title</label>
@@ -33,7 +34,7 @@
 </div>
 
 
-<h1>Recent Posts</h1>
+<h1 class = "recent-posts-banner">Recent Posts</h1>
 
 <div class="col-6" id = "flex-container">
   <ul class="row list-unstyled" id ="recent-posts">
@@ -49,7 +50,7 @@
 
 
 <div class="row justify-content-center mt-5">
-  <a class="btn btn-primary" href="/feed">Return Home</a>
+  <a class="btn btn-primary return-home" href="/feed">Return Home</a>
 </div>  
 
 <%- include('partials/footer') -%>
