@@ -16,20 +16,36 @@
         >
           <button class="btn btn-primary fa fa-heart" type="submit"></button>
         </form>
+
+      
         <%if(post.user == user.id){ %>
+
+          
         <form
           action="/post/deletePost/<%= post.id %>?_method=DELETE"
           method="POST"
           class="col-3"
         >
-          <button class="btn btn-primary fa fa-trash" type="submit"></button>
-        </form>
-
+        <button class="btn btn-primary fa fa-trash" type="submit"></button>
+        </form>      
         <%}%>
       </div>
+
+      
       <p class="col-3"><%= post.likes %>   likes</p>
       <p><strong><%= user.userName %></strong>:   <%= post.caption %></p>
 
+      <div>
+        <form action="/post/<%= post.id %>/comment"
+          method="POST"> <!-- Set the action attribute to the route for comment submission -->
+          Add comment:
+          <input type="text" name = "comment"> <!-- Add a name attribute to identify the input data -->
+          <button type="submit">Submit</button> <!-- Add a submit button -->
+        </form>
+      </div>
+    <ul>
+
+    </ul>
     </div>
   </div>
 </div>

@@ -1,6 +1,8 @@
 const cloudinary = require("../middleware/cloudinary");
 const Post = require("../models/Post");
 
+
+
 module.exports = {
   getProfile: async (req, res) => {
     try {
@@ -19,6 +21,7 @@ module.exports = {
     }
   },
   getPost: async (req, res) => {
+    
     try {
       const post = await Post.findById(req.params.id);
       console.log(post);
@@ -33,6 +36,7 @@ module.exports = {
       const result = await cloudinary.uploader.upload(req.file.path);
 
       await Post.create({
+        text: 'Image',
         title: req.body.title,
         image: result.secure_url,
         cloudinaryId: result.public_id,
@@ -72,6 +76,41 @@ module.exports = {
       res.redirect("/profile");
     } catch (err) {
       res.redirect("/profile");
+    }
+  },
+  SubmitComment: async (req, res) => {
+    try {
+      const postId = req.params.id;
+      const commentText = req.body.comment;
+      const userId = req.user._id; // Storing the _id property in a variable
+      console.log(userId);
+
+      // Find the post by ID
+      const post = await Post.findById(postId);
+      console.log(userId);
+
+
+      if (!post) {
+        return res.status(404).send('Post not found');
+      }
+      // Add the new comment to the comments array
+      post.comments.push({
+        text: commentText,
+        userID: userId,
+        date: new Date(),
+      });
+      console.log(userId);
+
+
+      // Save the updated post with the new comment
+      await post.save();
+      console.log(userId);
+
+
+      res.redirect(`/post/${postId}`);
+    } catch (error) {
+      console.error('Error saving comment:', error);
+      res.status(500).send('Error saving the comment.');
     }
   },
 };

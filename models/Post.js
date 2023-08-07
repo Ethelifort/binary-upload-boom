@@ -1,4 +1,6 @@
+const { ObjectId } = require("mongodb");
 const mongoose = require("mongoose");
+
 
 const PostSchema = new mongoose.Schema({
   title: {
@@ -21,14 +23,33 @@ const PostSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
+
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
   },
+
+  text: {
+    type: String,
+    trim: true,
+    required: true
+  },
+
   createdAt: {
     type: Date,
     default: Date.now,
   },
+
+  comments: [{
+
+    text: String,
+    created:{type: Date, default: Date.now},
+    userID: {type: ObjectId, ref: "User" }
+ 
+  }]
 });
+
+
+
 
 module.exports = mongoose.model("Post", PostSchema);
