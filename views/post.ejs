@@ -43,9 +43,24 @@
           <button type="submit">Submit</button> <!-- Add a submit button -->
         </form>
       </div>
-    <ul>
-
-    </ul>
+    
+      <div class="comments">
+        <% post.comments.forEach(comment => { %>
+          <div class="comment">
+            <p><%= comment.text %></p>
+            <p><%= comment.user %></p>
+            <p><%= comment.date %></p>
+      
+            <% if (true) { %>
+              <% console.log(user.id,post.comments.userID,user.id,post.id) %>
+              <form action="/post/deleteComment/<%= post.id %>/<%= comment._id %>?_method=DELETE" method="POST">
+                <button class="btn btn-primary fa fa-trash" type="submit">Delete Comment</button>
+              </form>
+            <% } %>
+          </div>
+        <% }) %>
+      </div>
+      </div>
     </div>
   </div>
 </div>

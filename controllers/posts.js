@@ -113,4 +113,54 @@ module.exports = {
       res.status(500).send('Error saving the comment.');
     }
   },
+
+  getComments: async (req, res) => {
+    try {
+      console.log("GetCommentsRAN")
+      const post = await Post.findById(req.params.id)
+        .populate('comments.user') // Populate the 'user' property of each comment
+        .sort({ createdAt: 'desc' });
+  
+      if (!post) {
+        return res.status(404).send('Post not found');
+      }
+  
+      res.render('post.ejs', { post: post });
+    } catch (err) {
+      console.log('Error:', err);
+      res.status(500).send('Internal Server Error');
+    }
+  },
+
+  deleteComment : async (req, res) => {
+    try {
+      const postId = req.params.postId;
+      const commentId = req.params.commentId;
+  
+      // Find the post by ID
+      const post = await Post.findById(postId);
+  
+      if (!post) {
+        return res.status(404).send('Post not found');
+      }
+  
+      // Find the index of the comment in the comments array
+      const commentIndex = post.comments.findIndex(comment => comment.id === commentId);
+  
+      if (commentIndex === -1) {
+        return res.status(404).send('Comment not found');
+      }
+  
+      // Remove the comment from the array
+      post.comments.splice(commentIndex, 1);
+  
+      // Save the updated post
+      await post.save();
+  
+      res.redirect(`/post/${postId}`);
+    } catch (error) {
+      console.error('Error deleting comment:', error);
+      res.status(500).send('Error deleting the comment.');
+    }
+  },
 };
