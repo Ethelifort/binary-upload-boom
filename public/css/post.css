@@ -23,3 +23,59 @@
 #return a{
     margin-right : 10px;
 }
+
+
+#main-post-buttons button{
+
+    width: 40px;
+    height: 40px;
+    
+
+
+}
+
+.col-1{
+    padding:0px;
+}
+
+.row{
+    margin-right: 0px;
+}
+
+
+body > div.container > div > div > p.col-3{
+    padding-left:0px;
+
+}
+
+#main-post-buttons{
+    margin-left: 0px;
+    width: 360px;
+}
+#main-post-buttons button{
+
+
+
+}
+
+#main-post-buttons > form.col-3{
+    flex: 0 0 0%;
+    max-width: 17%;
+    position: relative;
+}
+
+
+#deletePostForm{
+    display: flex;
+    justify-content: flex-end;
+}
+#deletePostForm button{
+  background-color: red;
+  border:red;
+}
+
+
+
+
+
+

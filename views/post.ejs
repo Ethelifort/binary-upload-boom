@@ -1,76 +1,136 @@
 <%- include('partials/header') -%>
-<link rel="stylesheet" href = "\css\post.css"></link>
-
+<link rel="stylesheet" href="\css\post.css"></link>
 
 <div class="container">
-
   <div class="row justify-content-center mt-5">
     <div class="col-6">
       <p><%= user.userName %></p>
       <img class="img-fluid" src="<%= post.image%>" />
-      <div class="row">
+      <div class="row" id="main-post-buttons">
         <form
           class="col-1"
           action="/post/likePost/<%= post.id %>?_method=PUT"
           method="POST"
         >
           <button class="btn btn-primary fa fa-heart" type="submit"></button>
+          
         </form>
 
-      
-        <%if(post.user == user.id){ %>
+        <% if (post.user == user.id) { %>
+          <form
+            action="/post/<%= post.id %>/comment"
+            method="POST"
+            id="commentForm"
+            style="display: none;"
+          >
+            <!-- Set the action attribute to the route for comment submission -->
+            Add comment:
+            <input type="text" name="comment" required />
+            <!-- Add a name attribute to identify the input data -->
+            <button type="submit">Submit</button> <!-- Add a submit button -->
+          </form>
 
           
-        <form
-          action="/post/deletePost/<%= post.id %>?_method=DELETE"
-          method="POST"
-          class="col-3"
-        >
-        <button class="btn btn-primary fa fa-trash" type="submit"></button>
-        </form>      
-        <%}%>
+        <% } %>
+        <% if (post.user == user.id) { %>
+        <button id="toggleCommentForm" class="btn btn-primary fa fa-comment"></button>
+              <% } %>
       </div>
 
-      
-      <p class="col-3"><%= post.likes %>   likes</p>
-      <p><strong><%= user.userName %></strong>:   <%= post.caption %></p>
+      <% if (post.user == user.id) { %>
 
-      <div>
-        <form action="/post/<%= post.id %>/comment"
-          method="POST"> <!-- Set the action attribute to the route for comment submission -->
-          Add comment:
-          <input type="text" name = "comment"> <!-- Add a name attribute to identify the input data -->
-          <button type="submit">Submit</button> <!-- Add a submit button -->
-        </form>
-      </div>
-    
-      <div class="comments">
+      <form
+        action="/post/deletePost/<%= post.id %>?_method=DELETE"
+        method="POST"
+        id="deletePostForm"
+      >
+        <button class="btn btn-primary " type="submit" id="deletePostBtn">Delete Post</button>
+      </form>
+
+      <% } %>
+
+
+      <p class="col-3"><%= post.likes %> likes</p>
+      <p><strong><%= user.userName %></strong>: <%= post.caption %></p>
+      <button id="toggleComments" class="btn btn-primary">View <%= post.commentCount %> Comments</button>
+
+      <div class="comments" id="commentsSection" style="display: none;">
         <% post.comments.forEach(comment => { %>
-          <div class="comment">
+          <div class="comment" data-comment-id="<%= comment._id %>">
             <p><%= comment.text %></p>
             <p><%= comment.user %></p>
             <p><%= comment.date %></p>
-      
+
             <% if (true) { %>
-              <% console.log(user.id,post.comments.userID,user.id,post.id) %>
-              <form action="/post/deleteComment/<%= post.id %>/<%= comment._id %>?_method=DELETE" method="POST">
-                <button class="btn btn-primary fa fa-trash" type="submit">Delete Comment</button>
+              <form
+                class="delete-comment-form"
+                action="/post/deleteComment/<%= post.id %>/<%= comment._id %>?_method=DELETE"
+                method="POST"
+              >
+                <button class="btn btn-primary fa-regular fa-trash-can" type="submit">Delete Comment</button>
               </form>
             <% } %>
           </div>
         <% }) %>
       </div>
-      </div>
     </div>
   </div>
 </div>
 
-<div class = "mt-5" id  = "return">
+<div class="mt-5" id="return">
   <a class="btn btn-primary" href="/profile">Return to Profile</a>
   <a class="btn btn-primary" href="/feed">Return to Feed</a>
 </div>
 
+<script>
+  const toggleCommentFormBtn = document.getElementById('toggleCommentForm');
+  const commentForm = document.getElementById('commentForm');
+
+  const toggleCommentsBtn = document.getElementById('toggleComments');
+  const commentsSection = document.getElementById('commentsSection');
+
+  const deletePostBtn = document.getElementById('deletePostBtn');
+  const deletePostForm = document.getElementById('deletePostForm');
 
 
+
+  toggleCommentFormBtn.addEventListener('click', () => {
+    commentForm.style.display = commentForm.style.display === 'none' ? 'block' : 'none';
+  });
+
+  toggleCommentsBtn.addEventListener('click', () => {
+    commentsSection.style.display = commentsSection.style.display === 'none' ? 'block' : 'none';
+  });
+
+
+  deletePostBtn.addEventListener('click', () => {
+    event.preventDefault(); // Prevent the default form submission
+    const confirmDelete = confirm('Are you sure you want to delete this post?');
+
+    if (confirmDelete) {
+      deletePostForm.submit(); // Submit the form if user confirms
+    }else {
+      console.log('Post deletion cancelled.');
+    }
+
+  })
+  
+
+  const deleteCommentForms = document.querySelectorAll('.delete-comment-form');
+  deleteCommentForms.forEach(form => {
+    form.addEventListener('submit', async event => {
+      event.preventDefault();
+      const commentId = form.closest('.comment').getAttribute('data-comment-id');
+      try {
+        await fetch(form.action, { method: 'DELETE' });
+        document.querySelector(`[data-comment-id="${commentId}"]`).remove();
+      } catch (error) {
+        console.error(error);
+      }
+    });
+  });
+
+  
+</script>
 
 <%- include('partials/footer') -%>

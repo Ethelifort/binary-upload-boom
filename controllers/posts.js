@@ -21,13 +21,27 @@ module.exports = {
     }
   },
   getPost: async (req, res) => {
-    
     try {
-      const post = await Post.findById(req.params.id);
-      console.log(post);
-      res.render("post.ejs", { post: post, user: req.user });
-    } catch (err) {
-      console.log(err);
+      const postId = req.params.id;
+
+      const post = await Post.findById(postId)
+        .populate('comments.user')
+        .exec();
+
+      if (!post) {
+        return res.status(404).send('Post not found');
+      }
+
+      const commentCount = post.comments.length;
+
+      res.render('post.ejs', {
+        user: req.user,
+        post: post,
+        commentCount: commentCount, // Pass the commentCount to the view
+      });
+    } catch (error) {
+      console.error('Error fetching post:', error);
+      res.status(500).send('Error fetching the post.');
     }
   },
   createPost: async (req, res) => {
@@ -85,6 +99,10 @@ module.exports = {
       const userId = req.user._id; // Storing the _id property in a variable
       console.log(userId);
 
+      if (!commentText || !commentText.trim()) {
+        return res.status(400).send('Comment cannot be empty');
+      }
+
       // Find the post by ID
       const post = await Post.findById(postId);
       console.log(userId);
@@ -99,6 +117,9 @@ module.exports = {
         userID: userId,
         date: new Date(),
       });
+
+      post.commentCount = post.comments.length;
+
       console.log(userId);
 
 
@@ -132,7 +153,7 @@ module.exports = {
     }
   },
 
-  deleteComment : async (req, res) => {
+  deleteComment: async (req, res) => {
     try {
       const postId = req.params.postId;
       const commentId = req.params.commentId;
@@ -154,6 +175,9 @@ module.exports = {
       // Remove the comment from the array
       post.comments.splice(commentIndex, 1);
   
+      // Update the comment count
+      post.commentCount = post.comments.length;
+  
       // Save the updated post
       await post.save();
   
@@ -162,5 +186,6 @@ module.exports = {
       console.error('Error deleting comment:', error);
       res.status(500).send('Error deleting the comment.');
     }
-  },
+  }
+  
 };

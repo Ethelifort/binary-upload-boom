@@ -46,7 +46,15 @@ const PostSchema = new mongoose.Schema({
     created:{type: Date, default: Date.now},
     userID: {type: ObjectId, ref: "User" }
  
-  }]
+  }],
+
+  
+  commentCount: {
+    type: Number,
+    default: 0,
+  },
+
+
 });
 
 

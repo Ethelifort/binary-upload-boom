@@ -18,8 +18,7 @@ router.delete("/deletePost/:id", postsController.deletePost);
 
 router.post("/:id/comment",ensureAuth, postsController.SubmitComment);
 
-router.get('/:id/comment', ensureAuth, postsController.getComments);
-
+router.get('/post/:id/comment', ensureAuth, postsController.getComments);
 
 router.delete("/deleteComment/:postId/:commentId",ensureAuth,postsController.deleteComment);
 
