@@ -23,15 +23,4 @@ router.get('/post/:id/comment', ensureAuth, postsController.getComments);
 router.delete("/deleteComment/:postId/:commentId",ensureAuth,postsController.deleteComment);
 
 
-
-
-
-
-
-
-
-
-
-
-
 module.exports = router;
