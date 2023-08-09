@@ -1,5 +1,3 @@
-require("dotenv").config({ path: "./config/.env" });
-
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
@@ -16,17 +14,14 @@ const postRoutes = require("./routes/posts");
 //Use .env file in config folder
 require("dotenv").config({ path: "./config/.env" });
 
+
+
 // Passport config
 require("./config/passport")(passport);
 
 //Connect To Database
-connectDB()
-  .then(() => {
-    console.log("Connected to MongoDB");
-  })
-  .catch((error) => {
-    console.error("Error connecting to MongoDB:", error);
-  });
+connectDB();
+
 
 console.log("MONGODB_URI:", process.env.MONGODB_URI);
 
@@ -56,6 +51,7 @@ app.use(
   })
 );
 
+
 // Passport middleware
 app.use(passport.initialize());
 app.use(passport.session());
@@ -68,7 +64,6 @@ app.use("/", mainRoutes);
 app.use("/post", postRoutes);
 
 //Server Running
-const PORT = process.env.PORT || 4000;
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}, you better catch it!`);
+app.listen(process.env.PORT, () => {
+  console.log("Server is running, you better catch it!");
 });
