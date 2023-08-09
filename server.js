@@ -1,3 +1,5 @@
+require("dotenv").config({ path: "./config/.env" });
+
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
@@ -18,15 +20,15 @@ require("dotenv").config({ path: "./config/.env" });
 require("./config/passport")(passport);
 
 //Connect To Database
-connectDB();
+connectDB()
+  .then(() => {
+    console.log("Connected to MongoDB");
+  })
+  .catch((error) => {
+    console.error("Error connecting to MongoDB:", error);
+  });
 
-
-mongoose.connect(process.env.MONGODB_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  useFindAndModify: false,
-  useCreateIndex: true
-});
+console.log("MONGODB_URI:", process.env.MONGODB_URI);
 
 //Using EJS for views
 app.set("view engine", "ejs");
@@ -54,7 +56,6 @@ app.use(
   })
 );
 
-
 // Passport middleware
 app.use(passport.initialize());
 app.use(passport.session());
@@ -67,6 +68,7 @@ app.use("/", mainRoutes);
 app.use("/post", postRoutes);
 
 //Server Running
-app.listen(process.env.PORT, () => {
-  console.log("Server is running, you better catch it!");
+const PORT = process.env.PORT || 4000;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}, you better catch it!`);
 });
