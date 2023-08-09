@@ -46,6 +46,13 @@ app.use(
   })
 );
 
+mongoose.connect(process.env.MONGODB_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useFindAndModify: false,
+  useCreateIndex: true
+});
+
 // Passport middleware
 app.use(passport.initialize());
 app.use(passport.session());
