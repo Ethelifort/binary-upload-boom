@@ -20,6 +20,14 @@ require("./config/passport")(passport);
 //Connect To Database
 connectDB();
 
+
+mongoose.connect(process.env.MONGODB_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useFindAndModify: false,
+  useCreateIndex: true
+});
+
 //Using EJS for views
 app.set("view engine", "ejs");
 
@@ -46,12 +54,6 @@ app.use(
   })
 );
 
-mongoose.connect(process.env.MONGODB_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  useFindAndModify: false,
-  useCreateIndex: true
-});
 
 // Passport middleware
 app.use(passport.initialize());
