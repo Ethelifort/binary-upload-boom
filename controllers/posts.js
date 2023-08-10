@@ -5,6 +5,7 @@ const User = require("../models/User");
 
 
 
+
 module.exports = {
   getProfile: async (req, res) => {
     try {
@@ -14,28 +15,30 @@ module.exports = {
       console.log(err);
     }
   },
-
-  
   getFeed: async (req, res) => {
     try {
-      let posts = [];
-  
       if (req.query.username) {
-        // Search for posts by users with the specified username
-        const users = await User.find({ userName: new RegExp(req.query.username, 'i') });
-        const userIds = users.map(user => user._id);
-        posts = await Post.find({ user: { $in: userIds } });
+        // Search for the user with the specified username
+        const user = await User.findOne({ userName: req.query.username });
+
+        if (!user) {
+          // Handle case where user is not found
+          return res.render("feed.ejs", { posts: [] });
+        }
+
+        // Find posts by the user
+        const posts = await Post.find({ user: user._id });
+
+        res.render("feed.ejs", { posts: posts });
       } else {
         // If no search query, get posts of the logged-in user
-        posts = await Post.find({ user: req.user.id });
+        const posts = await Post.find({ user: req.user.id });
+        res.render("feed.ejs", { posts: posts });
       }
-  
-      res.render("feed.ejs", { posts: posts });
     } catch (err) {
       console.log(err);
     }
   },
-
   getPost: async (req, res) => {
     try {
       const postId = req.params.id;

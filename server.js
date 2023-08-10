@@ -29,7 +29,10 @@ console.log("MONGODB_URI:", process.env.MONGODB_URI);
 app.set("view engine", "ejs");
 
 //Static Folder
-app.use(express.static("public"));
+
+app.use(express.static(__dirname + '/public'));
+
+
 
 //Body Parsing
 app.use(express.urlencoded({ extended: true }));
@@ -50,6 +53,9 @@ app.use(
     store: new MongoStore({ mongooseConnection: mongoose.connection }),
   })
 );
+
+
+
 
 
 // Passport middleware

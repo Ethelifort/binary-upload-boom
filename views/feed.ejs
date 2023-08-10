@@ -1,8 +1,9 @@
-
 <body>
 <%- include('partials/header') -%>
-<link rel="stylesheet" href = "css/feed.css"></link>
+<head>
+<link rel="stylesheet" href = "/css/feed.css"></link>
 <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap" rel="stylesheet">
+</head>
 
   <div class="container">
      <button class ="button_slide slide_down"><a href="/profile" class ="feed-button">Add Post</a></button>
@@ -19,27 +20,22 @@
     </div>
   </div>
 </div>
-    
-        <div class="row justify-content-center mt-4" id = "all-images-container">
-      <ul class="row list-unstyled" id = "feed-image-width">
-        <% for(var i=0; i<posts.length; i++) {%>
-          <li class="col-4 justify-content-between mt-2">
-            <a href="/post/<%= posts[i]._id%> " class ="images-feed">
-      
-              <img class = "heart" src = "https://em-content.zobj.net/source/skype/289/white-heart_1f90d.png"></img>
-              <span class = "like-count"><%= posts[i].likes%></span>
-              <img class="img-fluid" src="<%= posts[i].image%>"></img>
-
-            </a>
-          </li>
 
 
+<div class="row justify-content-center mt-4" id="all-images-container">
+  <ul class="row list-unstyled" id="feed-image-width">
+    <% for (var i = 0; i < posts.length; i++) { %>
+      <li class="col-4 justify-content-between mt-2">
+        <a href="/post/<%= posts[i]._id%> " class="images-feed">
+          <img class="heart" src="https://em-content.zobj.net/source/skype/289/white-heart_1f90d.png"></img>
+          <span class="like-count"><%= posts[i].likes%></span>
+          <img class="img-fluid" src="<%= posts[i].image%>"></img>
+        </a>
+      </li>
+    <% } %>
+  </ul>
+</div>
 
-
-          
-        <% } %>
-        </ul>
-    </div>
 </body>
 <%- include('partials/footer') -%>
 
