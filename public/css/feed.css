@@ -103,14 +103,10 @@ body{
   font-family: 'Open Sans', sans-serif;
 }
 
-.search {
-  width: 40%;
-  position: relative;
-  display: flex;
-}
+
 
 .searchTerm {
-  width: 93%;
+  width: 35em;
   border: 3px solid rgb(113, 184, 194);
   border-right: none;
   padding: 5px;
@@ -126,15 +122,15 @@ body{
 }
 
 .searchButton {
-  width: 80px;
+  width: 70px;
   height: 50px;
   border: 1px solid rgb(113, 184, 194);
   background: rgb(46, 179, 197);
-  text-align: center;
   color: #fff;
   border-radius: 0 5px 5px 0;
   cursor: pointer;
   font-size: 20px;
+  padding-bottom: 5px;
 }
 .search>input{
   color:black;

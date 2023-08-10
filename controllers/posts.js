@@ -1,5 +1,7 @@
 const cloudinary = require("../middleware/cloudinary");
 const Post = require("../models/Post");
+const User = require("../models/User");
+
 
 
 
@@ -12,14 +14,28 @@ module.exports = {
       console.log(err);
     }
   },
+
+  
   getFeed: async (req, res) => {
     try {
-      const posts = await Post.find().sort({ createdAt: "desc" }).lean();
+      let posts = [];
+  
+      if (req.query.username) {
+        // Search for posts by users with the specified username
+        const users = await User.find({ userName: new RegExp(req.query.username, 'i') });
+        const userIds = users.map(user => user._id);
+        posts = await Post.find({ user: { $in: userIds } });
+      } else {
+        // If no search query, get posts of the logged-in user
+        posts = await Post.find({ user: req.user.id });
+      }
+  
       res.render("feed.ejs", { posts: posts });
     } catch (err) {
       console.log(err);
     }
   },
+
   getPost: async (req, res) => {
     try {
       const postId = req.params.id;
@@ -181,7 +197,7 @@ module.exports = {
       // Save the updated post
       await post.save();
   
-      res.redirect(`/post/${postId}`);
+      res.redirect(`post/${postId}`);
     } catch (error) {
       console.error('Error deleting comment:', error);
       res.status(500).send('Error deleting the comment.');

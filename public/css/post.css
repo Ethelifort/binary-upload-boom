@@ -51,6 +51,9 @@ body > div.container > div > div > p.col-3{
 }
 
 
+
+
+
 #main-post-buttons > form.col-3{
     flex: 0 0 0%;
     max-width: 17%;
@@ -67,6 +70,22 @@ body > div.container > div > div > p.col-3{
   border:red;
 }
 
+*form{
+
+    margin :0px;
+
+}
+
+*button{
+    margin:0px;
+}
+
+#deletePostBtn{
+
+    position: absolute;
+    z-index: 3;
+    top: 453px;
+}
 
 
 

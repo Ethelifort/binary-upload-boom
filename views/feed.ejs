@@ -10,17 +10,15 @@
 </div>
 
 <div class="main-search-input-wrap">
-
-
   <div class="wrap">
     <div class="search">
-       <input type="text" class="searchTerm" placeholder="Who are you looking for?">
-      <form><button type="submit" class="searchButton"></form>
-         <i class="fa fa-search"></i>
-      </button>
+      <form action="/feed/search" method="GET">
+        <input type="text" class="searchTerm"  placeholder="Who are you looking for?" name="username">
+        <button type="submit" class="searchButton fa fa-search"></button>
+      </form>
     </div>
- </div>
-       
+  </div>
+</div>
     
         <div class="row justify-content-center mt-4" id = "all-images-container">
       <ul class="row list-unstyled" id = "feed-image-width">
@@ -34,6 +32,10 @@
 
             </a>
           </li>
+
+
+
+
           
         <% } %>
         </ul>
