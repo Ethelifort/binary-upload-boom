@@ -16,13 +16,11 @@
           
         </form>
         
-        <% if (post.user == user.id) { %>
+        <% if (true) { %>
         <button id="toggleCommentForm" class="btn btn-primary fa fa-comment"></button>
               <% } %>
-
               <p class = "likecount"><%= post.likes %> likes</p>
-
-              <% if (post.user == user.id) { %>
+              <% if (true) { %>
                 <form
                   action="/post/<%= post.id %>/comment"
                   method="POST"
@@ -34,13 +32,10 @@
                   <!-- Add a name attribute to identify the input data -->
                   <button type="submit">Submit</button> <!-- Add a submit button -->
                 </form>
-      
-                
               <% } %>
       </div>
 
       <% if (post.user == user.id) { %>
-
       <form
         action="/post/deletePost/<%= post.id %>?_method=DELETE"
         method="POST"
@@ -48,7 +43,6 @@
       >
         <button class="btn btn-primary " type="submit" id="deletePostBtn">Delete Post</button>
       </form>
-
       <% } %>
 
 
@@ -62,15 +56,17 @@
             <p><%= comment.user %></p>
             <p><%= comment.date %></p>
 
-            <% if (true) { %>
-              <form
-                class="delete-comment-form"
-                action="/post/deleteComment/<%= post.id %>/<%= comment._id %>?_method=DELETE"
-                method="POST"
-              >
-                <button class="btn btn-primary fa-regular fa-trash-can" type="submit">Delete Comment</button>
-              </form>
-            <% } %>
+            <% post.comments.forEach(comment => { %>
+              <% if (comment.userID.equals(user._id)) { %>
+                <form
+                  class="delete-comment-form"
+                  action="/post/deleteComment/<%= post.id %>/<%= comment._id %>?_method=DELETE"
+                  method="POST"
+                >
+                  <button class="btn btn-primary fa-regular fa-trash-can" type="submit">Delete Comment</button>
+                </form>
+              <% } %>
+            <% }) %>            
           </div>
         <% }) %>
       </div>
