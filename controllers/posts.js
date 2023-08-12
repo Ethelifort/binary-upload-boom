@@ -4,8 +4,6 @@ const User = require("../models/User");
 
 
 
-
-
 module.exports = {
   getProfile: async (req, res) => {
     try {
@@ -42,11 +40,7 @@ module.exports = {
   getPost: async (req, res) => {
     try {
       const postId = req.params.id;
-
-      const post = await Post.findById(postId)
-        .populate('comments.user')
-        .exec();
-
+      const post = await Post.findById(postId).populate('comments.userID').exec();
       if (!post) {
         return res.status(404).send('Post not found');
       }
@@ -116,6 +110,8 @@ module.exports = {
       const postId = req.params.id;
       const commentText = req.body.comment;
       const userId = req.user._id; // Storing the _id property in a variable
+      let date = req.params.created;
+      console.log(date);
       console.log(userId);
 
       if (!commentText || !commentText.trim()) {

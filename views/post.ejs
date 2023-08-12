@@ -20,6 +20,7 @@
         <button id="toggleCommentForm" class="btn btn-primary fa fa-comment"></button>
               <% } %>
               <p class = "likecount"><%= post.likes %> likes</p>
+              <p class = "datecreated"><%= post.createdAt.toDateString()%></p>
               <% if (true) { %>
                 <form
                   action="/post/<%= post.id %>/comment"
@@ -52,24 +53,24 @@
       <div class="comments" id="commentsSection" style="display: none;">
         <% post.comments.forEach(comment => { %>
           <div class="comment" data-comment-id="<%= comment._id %>">
-            <p><%= comment.text %></p>
-            <p><%= comment.user %></p>
-            <p><%= comment.date %></p>
+            <p>
+              <strong><%= comment.userID.userName %></strong>: <%= comment.text %>
+            </p>
+            <span class="comment-created-at"><%= comment.created.toDateString() %></span>
 
-            <% post.comments.forEach(comment => { %>
-              <% if (comment.userID.equals(user._id)) { %>
-                <form
-                  class="delete-comment-form"
-                  action="/post/deleteComment/<%= post.id %>/<%= comment._id %>?_method=DELETE"
-                  method="POST"
-                >
-                  <button class="btn btn-primary fa-regular fa-trash-can" type="submit">Delete Comment</button>
-                </form>
-              <% } %>
-            <% }) %>            
+            
+            <% if (comment.userID.equals(user._id)) { %>
+              <form
+                class="delete-comment-form"
+                action="/post/deleteComment/<%= post.id %>/<%= comment._id %>?_method=DELETE"
+                method="POST"
+              >
+                <button class="btn btn-primary fa-regular fa-trash-can" type="submit">Delete Comment</button>
+              </form>
+            <% } %>
           </div>
         <% }) %>
-      </div>
+      </div>      
     </div>
   </div>
 </div>
