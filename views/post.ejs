@@ -2,6 +2,7 @@
 <link rel="stylesheet" href="\css\post.css"></link>
 
 <div class="container">
+
   <div class="row justify-content-center mt-5">
     <div class="col-6">
       <p><%= user.userName %></p>
@@ -13,7 +14,6 @@
           method="POST"
         >
           <button class="btn btn-primary fa fa-heart" type="submit"></button>
-          
         </form>
         
         <% if (true) { %>
@@ -28,10 +28,8 @@
                   id="commentForm"
                   style="display: none;"
                 >
-                  <!-- Set the action attribute to the route for comment submission -->
                   <span>Add comment:</span> <input type="text" name="comment" required />
-                  <!-- Add a name attribute to identify the input data -->
-                  <button type="submit">Submit</button> <!-- Add a submit button -->
+                  <button type="submit">Submit</button> 
                 </form>
               <% } %>
       </div>
@@ -46,7 +44,6 @@
       </form>
       <% } %>
 
-
       <p><strong><%= user.userName %></strong>: <%= post.caption %></p>
       <button id="toggleComments" class="btn btn-primary">View <%= post.commentCount %> Comments</button>
 
@@ -58,7 +55,7 @@
             </p>
             <span class="comment-created-at"><%= comment.created.toDateString() %></span>
 
-            
+          
             <% if (comment.userID.equals(user._id)) { %>
               <form
                 class="delete-comment-form"
@@ -91,7 +88,6 @@
   const deletePostForm = document.getElementById('deletePostForm');
 
 
-
   toggleCommentFormBtn.addEventListener('click', () => {
     commentForm.style.display = commentForm.style.display === 'none' ? 'flex' : 'none';
   });
@@ -102,11 +98,11 @@
 
 
   deletePostBtn.addEventListener('click', () => {
-    event.preventDefault(); // Prevent the default form submission
+    event.preventDefault(); // Prevents the default form submission
     const confirmDelete = confirm('Are you sure you want to delete this post?');
 
     if (confirmDelete) {
-      deletePostForm.submit(); // Submit the form if user confirms
+      deletePostForm.submit();
     }else {
       console.log('Post deletion cancelled.');
     }
@@ -127,7 +123,6 @@
       }
     });
   });
-
 
   deleteCommentBtn.addEventListener('click', async () => {
  
