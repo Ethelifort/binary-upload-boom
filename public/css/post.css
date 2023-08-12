@@ -26,7 +26,7 @@
 
 
 #main-post-buttons button{
-
+    display: flex;
     width: 40px;
     height: 40px;
 }
@@ -47,7 +47,6 @@ body > div.container > div > div > p.col-3{
 
 #main-post-buttons{
     margin-left: 0px;
-    width: 360px;
 }
 
 
@@ -76,15 +75,32 @@ body > div.container > div > div > p.col-3{
 
 }
 
-*button{
-    margin:0px;
-}
 
 #deletePostBtn{
 
     position: absolute;
     z-index: 3;
     top: 453px;
+}
+
+#commentForm{
+    margin-top: 8px;
+    justify-content:center;
+    display: flex;
+    margin-bottom: 5%;
+
+}
+
+#commentForm input{
+    height:30px;
+}
+
+#commentForm button{
+    height:30px;
+    width: 67px;
+}
+
+#commentForm span{
 }
 
 

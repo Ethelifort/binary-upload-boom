@@ -15,25 +15,27 @@
           <button class="btn btn-primary fa fa-heart" type="submit"></button>
           
         </form>
-
-        <% if (post.user == user.id) { %>
-          <form
-            action="/post/<%= post.id %>/comment"
-            method="POST"
-            id="commentForm"
-            style="display: none;"
-          >
-            <!-- Set the action attribute to the route for comment submission -->
-            Add comment:
-            <input type="text" name="comment" required />
-            <!-- Add a name attribute to identify the input data -->
-            <button type="submit">Submit</button> <!-- Add a submit button -->
-          </form>
-
-          
-        <% } %>
+        
         <% if (post.user == user.id) { %>
         <button id="toggleCommentForm" class="btn btn-primary fa fa-comment"></button>
+              <% } %>
+
+              <p class = "likecount"><%= post.likes %> likes</p>
+
+              <% if (post.user == user.id) { %>
+                <form
+                  action="/post/<%= post.id %>/comment"
+                  method="POST"
+                  id="commentForm"
+                  style="display: none;"
+                >
+                  <!-- Set the action attribute to the route for comment submission -->
+                  <span>Add comment:</span> <input type="text" name="comment" required />
+                  <!-- Add a name attribute to identify the input data -->
+                  <button type="submit">Submit</button> <!-- Add a submit button -->
+                </form>
+      
+                
               <% } %>
       </div>
 
@@ -50,7 +52,6 @@
       <% } %>
 
 
-      <p class="col-3"><%= post.likes %> likes</p>
       <p><strong><%= user.userName %></strong>: <%= post.caption %></p>
       <button id="toggleComments" class="btn btn-primary">View <%= post.commentCount %> Comments</button>
 
@@ -95,7 +96,7 @@
 
 
   toggleCommentFormBtn.addEventListener('click', () => {
-    commentForm.style.display = commentForm.style.display === 'none' ? 'block' : 'none';
+    commentForm.style.display = commentForm.style.display === 'none' ? 'flex' : 'none';
   });
 
   toggleCommentsBtn.addEventListener('click', () => {
