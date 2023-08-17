@@ -165,6 +165,49 @@ body {
 }
 
 
+/* Media Queries for Responsive Design */
+@media screen and (max-width: 1024px) {
+  /* Adjust styles for tablet devices */
+  .container-button {
+    display: flex !important;
+    flex-direction: column;
+    justify-content: right;
+    align-items: flex-end;
+    margin-bottom: 40px;
+
+  }
+  
+
+  .img-fluid {
+    border: 1px solid black;
+    position: relative;
+    width: 300px;
+    z-index: 0;
+  }
+  .like-count {
+    font-size: 12px;
+    margin-top: 150px;
+  }
+
+ 
+
+  .like-count{
+    z-index: 1;
+    margin-top: 160px;
+    margin-left: 27px;
+    position: absolute;
+    color: white;
+    text-shadow: 1.5px 0.5px rgb(32, 30, 30);
+  }
+
+
+
+  
+  
+
+  
+}
+
 
 @media screen and (max-width: 480px) {
   /* Adjust styles for mobile devices */
