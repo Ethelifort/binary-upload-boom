@@ -55,14 +55,94 @@ svg {
 }
 
 
-
-
-
-
-
-
 .container{
     margin-bottom: 17%;
 
 }
 
+
+
+/* Media Queries for Responsive Design */
+@media screen and (max-width: 768px) {
+
+
+    header{
+        margin-bottom: 23%;
+      }
+    
+      .container{
+        margin-bottom: 200px;
+      }
+    
+    
+      h2{
+        margin-left: 20px;
+    
+      }
+    
+      svg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 40%;
+        height: 40vh;
+    }
+   
+}
+
+@media screen and (max-width: 1000px) {
+
+
+    header{
+        margin-bottom: 23%;
+      }
+    
+      .container{
+        margin-bottom: 200px;
+      }
+    
+    
+      h2{
+        margin-left: 20px;
+    
+      }
+    
+      svg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 40%;
+        height: 40vh;
+    }
+
+ 
+   
+}
+
+@media screen and (max-width: 480px) {
+  /* Adjust styles for mobile devices */
+
+  header{
+    margin-bottom: 23%;
+  }
+
+  .container{
+    margin-bottom: 200px;
+  }
+
+
+  h2{
+    margin-left: 20px;
+
+  }
+
+  svg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 25%;
+    height: 25vh;
+}
+
+ 
+}

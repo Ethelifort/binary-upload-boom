@@ -1,82 +1,72 @@
+/* SVG background */
 svg {
     position: absolute;
     z-index: 1;
     top: 0;
     left: 0;
-width: 100%;
-height: 100%;
+    width: 100%;
+    height: 100%;
     box-sizing: border-box;
     display: block;
     background-color: #72a797;
-background-image: linear-gradient(to bottom, rgba(12, 12, 12, 0.86), #0e4166);
-}
-
-header{
+    background-image: linear-gradient(to bottom, rgba(12, 12, 12, 0.86), #0e4166);
+  }
+  
+  /* Header */
+  header {
     position: relative;
     z-index: 2;
     margin-bottom: 5%;
-
-}
-
-.login-section{
-
-position: relative;
-z-index: 2;
-box-shadow: 0.5px 0.2px 0.2px 0.2px rgba(0, 0, 0, 0.5);
-color:rgb(0, 0, 0);
-
-
-
-
-
-background-color: #f9f9f9;
-  border-radius: 10px;
-  padding: 20px;
-  width: 400px;
-  margin: 0 auto;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-
-
-}
-
-.login-section h2{
+  }
+  
+  /* Login Section */
+  .login-section {
+    position: relative;
+    z-index: 2;
+    box-shadow: 0.5px 0.2px 0.2px 0.2px rgba(0, 0, 0, 0.5);
+    color: rgb(0, 0, 0);
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    padding: 20px;
+    width: 90%; 
+    max-width: 400px;
+    margin: 0 auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .login-section h2 {
     text-align: center;
-}
-
-
-.login-section form{
+  }
+  
+  .login-section form {
     margin-top: 20px;
-
-}
-
-
-.login-section input {
+  }
+  
+  .login-section input {
     width: 100%;
-  padding: 10px;
-  margin-bottom: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-.login-section button{
-
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .login-section button {
     width: 100%;
-  padding: 10px;
-  background-color: #3498db;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.login-section button:hover{
-
+    padding: 10px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .login-section button:hover {
     background-color: #2980b9;
-
-
-}
-header span{
-    color:rgb(231, 208, 208);
+  }
+  
+  header span {
+    color: rgb(231, 208, 208);
     font-size: 18px;
-}
+  }
+  

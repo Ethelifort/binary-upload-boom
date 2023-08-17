@@ -133,7 +133,7 @@ body > div.container > div > div > p.col-3{
 #commentsSection p {
 
     margin-bottom: 6px;
-    margin-top: 15px;
+    margin-top: px;
 
 }
 
@@ -143,6 +143,99 @@ body > div.container > div > div > p.col-3{
 
 }
 
+
+/* Media Queries for Responsive Design */
+@media screen and (max-width: 768px) {
+    /* Adjust styles for tablet devices */
+    .container {
+      margin-bottom: 5%;
+    }
+  
+
+    #deletePostBtn {
+      top: auto;
+      bottom: -30px;
+    }
+  
+    #commentsSection {
+      max-height: 300px;
+    }
+  }
+  
+  @media screen and (max-width: 480px) {
+    /* Adjust styles for mobile devices */
+    .img-fluid {
+        position: relative;
+        height: 250px;
+        width:300px;
+    }
+
+    .col-6{
+
+        flex: 0 0 100%;
+        max-width: 90%;
+    } 
+    #return {
+      flex-direction: column;
+      align-items: center;
+      margin-top: 20px;
+      margin-bottom: 10px;
+    }
+
+    #main-post-buttons button{
+        display: flex;
+        width: 40px;
+        margin-right: 20px ;
+    }
+  
+    #return a {
+      margin-right: 0;
+      margin-bottom: 10px;
+    }
+  
+    #deletePostForm button {
+      margin-top: 10px;
+      width: 40%;
+    }
+  
+    #deletePostBtn {
+     position:relative;
+      bottom: 130px;
+      box-sizing: initial;
+      
+    }
+
+    #toggleCommentForm{
+        margin-left: 20px;
+    }
+    
+  
+    #commentsSection {
+      max-height: 200px;
+    }
+
+    
+#delete-comment-button{
+    margin-bottom: 1%;
+    width:26%;
+    height: 30px;
+}
+
+
+#commentForm > button{
+
+    width:65px;
+}
+
+span{
+    margin-left: 12px;
+}
+
+.datecreated{
+    position: relative;
+}
+  }
+  
 
 
 

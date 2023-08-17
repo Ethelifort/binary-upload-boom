@@ -5,6 +5,7 @@
 
   <div class="row justify-content-center mt-5">
     <div class="col-6">
+      
       <p><%= user.userName %></p>
       <img class="img-fluid" src="<%= post.image%>" />
       <div class="row" id="main-post-buttons">
@@ -21,17 +22,7 @@
               <% } %>
               <p class = "likecount"><%= post.likes %> likes</p>
               <p class = "datecreated"><%= post.createdAt.toDateString()%></p>
-              <% if (true) { %>
-                <form
-                  action="/post/<%= post.id %>/comment"
-                  method="POST"
-                  id="commentForm"
-                  style="display: none;"
-                >
-                  <span>Add comment:</span> <input type="text" name="comment" required />
-                  <button type="submit">Submit</button> 
-                </form>
-              <% } %>
+              
       </div>
 
       <% if (post.user == user.id) { %>
@@ -41,7 +32,20 @@
         id="deletePostForm"
       >
         <button class="btn btn-primary " type="submit" id="deletePostBtn">Delete Post</button>
+
       </form>
+      <% } %>
+
+      <% if (true) { %>
+        <form
+          action="/post/<%= post.id %>/comment"
+          method="POST"
+          id="commentForm"
+          style="display: none;"
+        >
+          <span>Add comment:</span> <input type="text" name="comment" required />
+          <button type="submit" class = "submit-comment">Submit</button> 
+        </form>
       <% } %>
 
       <p><strong><%= user.userName %></strong>: <%= post.caption %></p>

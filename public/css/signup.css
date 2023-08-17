@@ -30,7 +30,8 @@ bottom: 100px;
  background-color: #f9f9f9;
   border-radius: 10px;
   padding: 20px;
-  width: 400px;
+  width: 300px; 
+  max-width: 299px;
   margin: 0 auto;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 
@@ -79,3 +80,38 @@ header span{
     font-size: 18px;
 }
     
+/* Media Queries for Responsive Design */
+@media screen and (max-width: 768px) {
+
+    .signup-section{
+    bottom: 60px;
+  }
+
+   
+}
+
+@media screen and (max-width: 1000px) {
+
+    .signup-section{
+    bottom: 60px;
+  }
+
+   
+}
+
+@media screen and (max-width: 480px) {
+  /* Adjust styles for mobile devices */
+
+
+  .signup-section{
+    width:300px;
+    bottom: 60px;
+  }
+
+  .col-6{
+
+    flex: 0 0 100%;
+        max-width: 90%;
+
+  }
+}
